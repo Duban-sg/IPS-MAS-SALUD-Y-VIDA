@@ -12,10 +12,10 @@ namespace Entity
         public string Apellido1 { get; set; }
         public string Apellido2 { get; set; }
         public string Identificacion { get; set; }
-        public bool TipoAfiliacion { get; set; }
+        public string TipoAfiliacion { get; set; }
         public double SalarioDevengado { get; set; }
 
-        public Paciente(string nombre, string apellido1, string apellido2, string identificacion, bool tipoAfiliacion, double salarioDevengado)
+        public Paciente(string nombre, string apellido1, string apellido2, string identificacion, string tipoAfiliacion, double salarioDevengado)
         {
             Nombre = nombre;
             Apellido1 = apellido1;
@@ -27,11 +27,12 @@ namespace Entity
 
         public Paciente()
         {
+            Apellido2 = "   ";
         }
 
         public override string ToString()
         {
-            return $"{Nombre};{Apellido1};{Apellido2};{Identificacion};{TipoAfiliacion};{SalarioDevengado}";
+            return $"{Nombre};{Apellido1};{Apellido2};{Identificacion};{TipoAfiliacion};{SalarioDevengado}\n";
         }
     }
 }

@@ -39,14 +39,7 @@ namespace DAL
         {
             pacientes.Clear();
             pacientes = leer();
-            foreach (Paciente item in pacientes)
-            {
-                if (item.Identificacion.Equals(Identificacion))
-                {
-                    return item;
-                }
-            }
-            return null;
+            return pacientes.Where(p=>p.Identificacion==Identificacion).FirstOrDefault();
         }
         public void eliminar(string Identificacion)
         {
@@ -61,6 +54,23 @@ namespace DAL
 
         }
 
+        public int ContadorConFiltro(string texto)
+        {
+            pacientes.Clear();
+            pacientes = leer();
+            if (texto == "SUBSIDIADO")return pacientes.Count(p=>p.TipoAfiliacion == texto);
+            else if (texto == "CONTRIBUTIVO") return pacientes.Count(p => p.TipoAfiliacion == texto);
+            else return pacientes.Count();
+        }
+        public IList<Paciente> FiltroPaciente(string texto)
+        {
+            pacientes.Clear();
+            pacientes = leer();
+            if (texto == "SUBSIDIADO") return pacientes.Where(p=>p.TipoAfiliacion==texto).ToList();
+            else if (texto == "CONTRIBUTIVO") return pacientes.Where(p => p.TipoAfiliacion == texto).ToList();
+            return pacientes;
+        }
+
         public Paciente Separador(string text)
         {
             Paciente paciente = new Paciente();
@@ -69,13 +79,13 @@ namespace DAL
             paciente.Apellido1 = separado[1];
             paciente.Apellido2 = separado[2];
             paciente.Identificacion = separado[3];
-            paciente.TipoAfiliacion = bool.Parse(separado[4]);
+            paciente.TipoAfiliacion = separado[4];
             paciente.SalarioDevengado = double.Parse(separado[5]);
 
             return paciente;
         }
 
-
+        
 
 
     }

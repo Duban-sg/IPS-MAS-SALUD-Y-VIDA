@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LCMContribuyente.cs" />
+    <Compile Include="LCMSubsidiado.cs" />
     <Compile Include="Paciente.cs" />
     <Compile Include="LiquidacionCuotaModeradora.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
